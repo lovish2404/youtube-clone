@@ -2,7 +2,7 @@ import axios from "axios";
 const Options = axios.create({
   baseURL: "https://www.googleapis.com/youtube/v3",
   params: {
-    key: "AIzaSyBSMzP87WRDC4EAElRAKgrsq3lfXFyLSPg",
+    key: "AIzaSyBQI7VHVgqRqfS9qhtfTuoGvDYKEkM5o4M",
     maxResults: "3",
     regionCode: "US",
   },
