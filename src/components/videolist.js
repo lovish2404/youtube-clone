@@ -42,17 +42,19 @@ export const VideoList = ({ searchFilter }) => {
     );
   }
   return (
-    <>
-      <section className="center">
-        {videoList.length > 0 &&
-          videoList.map(({ id, snippet }) => {
-            const { videoId } = id;
-            return <Video key={videoId} id={videoId} {...snippet}></Video>;
-          })}
-      </section>
-      <div className="showMoreV">
-        <button onClick={showMore}>Show more</button>
-      </div>
-    </>
+    videoList && (
+      <>
+        <section className="center">
+          {videoList.length > 0 &&
+            videoList.map(({ id, snippet }) => {
+              const { videoId } = id;
+              return <Video key={videoId} id={videoId} {...snippet}></Video>;
+            })}
+        </section>
+        <div className="showMoreV">
+          <button onClick={showMore}>Show more</button>
+        </div>
+      </>
+    )
   );
 };

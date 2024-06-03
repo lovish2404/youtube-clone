@@ -39,8 +39,7 @@ body {
   border-style: none;
   width: 40px;
   top: 24px;
-
-  left: 30px;
+  left: 12px;
 }
 .sidebar-icon {
   width: 100%;
@@ -48,7 +47,7 @@ body {
 }
 .change {
   border-color: #c0c0c0;
-  background-color: #c0c0c0;
+  background-color: lightgray;
 }
 
 #image-id {
@@ -77,6 +76,9 @@ body {
 .search {
   position: relative;
   left: 0px;
+  border-top-color: grey;
+  border-right-color: lightgray;
+  border-bottom-color: lightgrey;
   border-left: transparent;
   padding-top: 1px;
   width: 56px;
@@ -92,7 +94,7 @@ svg {
 }
 .searchMain {
   width: 30vw;
-  border: solid black;
+  border: solid grey;
   height: 45px;
   border-radius: 20px 0 0 20px;
   padding-left: 20px;
@@ -136,7 +138,7 @@ input:focus {
   height: 100%;
   transform: translate(-100%);
   z-index: 2;
-  background-color: #c0c0c0;
+  background-color: lightgray;
   transition: 0.3s cubic-bezier(0.36, -0.01, 0, 0.77);
 }
 .show {
@@ -144,10 +146,10 @@ input:focus {
   transform: translate(0);
 }
 .sidebarHeader {
-  margin: -18px 0 0 100px;
+  margin: -18px 0 0 75px;
 }
 .links {
-  padding: 20px 0 0 0px;
+  padding: 20px 0 0 14px;
   list-style-type: none;
 }
 .navlink {
@@ -158,7 +160,7 @@ input:focus {
   font-size: large;
   align-items: center;
   color: black;
-  width: 300px;
+  width: 270px;
   height: 50px;
   border-radius: 10px;
   margin-top: 10px;
@@ -169,7 +171,7 @@ input:focus {
   color: white;
 }
 .navlink:hover {
-  background-color: #336699;
+  background-color: darkgrey;
   color: white;
 }
 .loader {
@@ -888,7 +890,6 @@ img {
   border-radius: 22px;
   border-width: 1px;
   margin-bottom: 20px;
-  background: lightgrey;
 }
 .containerOptions {
   font-size: x-large;

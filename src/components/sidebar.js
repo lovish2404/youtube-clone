@@ -5,8 +5,11 @@ import { Pages } from "../data";
 import { Bars } from "./FaBars";
 import { NavLink } from "react-router-dom";
 export const Sidebar = () => {
-  const { sidebarOpen, setSidebarOpen } = useGlobalContext();
-  function handler() {
+  const { sidebarOpen, setSidebarOpen, setVideoList } = useGlobalContext();
+  function handler(e) {
+    if (!e.currentTarget.classList.contains("active-nav")) {
+      setVideoList([]);
+    }
     setSidebarOpen(false);
   }
 

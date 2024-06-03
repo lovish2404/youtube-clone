@@ -7,11 +7,7 @@ export const Subscribed = () => {
     <>
       <Navbar></Navbar>
       <Sidebar></Sidebar>
-      <h1>Subzszasdsas</h1>
-      <img
-        src="https://yt3.ggpht.com/S_jTelpAHOdADumYkZAtwyLydEkqtv39s3T-Rmif0v1WCDb8pZit-Vlo43pR1jBEn0Tmcpkx=s800-c-k-c0x00ffffff-no-nd-rj"
-        alt=""
-      />
+      <h1>No subscriptions</h1>
     </>
   );
 };
