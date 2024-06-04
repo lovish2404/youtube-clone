@@ -10,21 +10,28 @@ export const SearchVideoInfo = ({
   views,
   uploadDate,
   firstClass,
+  id,
 }) => {
   let TempClass = "";
   if (firstClass) {
     TempClass = firstClass;
   }
   const navigate = useNavigate();
+  const navigate2 = useNavigate();
   const redirect = () => {
     navigate(`/channel/${channelId}/home`);
+  };
+  const redirect2 = () => {
+    navigate2(`/video/${id}`);
   };
   return (
     <div className={`${firstClass}videoInfo`}>
       <div className={`${firstClass}channel-Info`}>
         <div
+          onClick={redirect2}
           className={`${firstClass}videoTitle`}
           style={{
+            cursor: "pointer",
             fontWeight: "650",
             fontSize: "20px",
           }}

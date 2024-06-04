@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
 import customAxios from "../axios";
 import { SingleComment } from "./singleComment";
-import { Loading } from "./loading";
-import { useParams } from "react-router-dom";
 export const Comments = ({ id, commentData, setCommentData }) => {
   const [loading, setLoading] = useState(true);
-
+  const [moreAvailable, setMoreAvailable] = useState(true);
   const [page, setPage] = useState("");
   const showMore = () => {
     fetchComments("5");
   };
   const fetchComments = async (num) => {
+    setMoreAvailable(true);
     try {
       const data = await customAxios.get("/commentThreads", {
         params: {
           videoId: id,
           part: "snippet,replies",
-          maxResults: num ? num : "20",
+          maxResults: num ? num : "10",
           ...(page && { pageToken: page }),
         },
       });
-
+      if (data.data.items.length < 5) {
+        setMoreAvailable(false);
+      }
       console.log(data);
-      setPage(data?.data?.nextPageToken);
+      if (data?.data?.nextPageToken) {
+        setPage(data?.data?.nextPageToken);
+      } else {
+        setPage(null);
+        setMoreAvailable(false);
+      }
       setCommentData((prev) => {
         return [...prev, ...data.data.items];
       });
@@ -47,7 +53,7 @@ export const Comments = ({ id, commentData, setCommentData }) => {
             return <SingleComment key={id} {...toSend}></SingleComment>;
           })}
           {console.log("dds", commentData)}
-          {Boolean(commentData?.length) && commentData?.length < 30 && (
+          {moreAvailable && commentData?.length < 30 && (
             <div className="showMoreV">
               <button onClick={showMore}>Show more</button>
             </div>

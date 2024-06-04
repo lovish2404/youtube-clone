@@ -5,23 +5,32 @@ import { PlaylistContainer } from "./playlistContainer";
 export const SuggestionList = ({ id, playlistId, resetCom, resetDetail }) => {
   const [suggestionList, setSuggestionList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [moreAvailable, setMoreAvailable] = useState(true);
   const [page, setPage] = useState("");
   const showMore = () => {
-    getApi("5");
+    getApi();
   };
-  const getApi = async (num) => {
+  const getApi = async () => {
+    setMoreAvailable(true);
     try {
       const data = await customAxios.get("/search", {
         params: {
           part: "snippet",
           relatedToVideo: id,
           type: "video",
-          ...(num && { maxResults: num }),
           ...(page && { pageToken: page }),
           videoDuration: "medium",
         },
       });
-      setPage(data?.data?.nextPageToken);
+      if (data.data.items.length < 5) {
+        setMoreAvailable(false);
+      }
+      if (data?.data?.nextPageToken) {
+        setPage(data?.data?.nextPageToken);
+      } else {
+        setPage(null);
+        setMoreAvailable(false);
+      }
       setSuggestionList((prev) => [...prev, ...data.data.items]);
     } catch (error) {
       console.log(error.response);
@@ -30,7 +39,9 @@ export const SuggestionList = ({ id, playlistId, resetCom, resetDetail }) => {
   };
 
   console.log("dd", suggestionList);
-
+  function resetPayload() {
+    setSuggestionList([]);
+  }
   useEffect(() => {
     if (!suggestionList?.length && id) {
       getApi();
@@ -41,7 +52,12 @@ export const SuggestionList = ({ id, playlistId, resetCom, resetDetail }) => {
     !loading && (
       <div className="suggestionList">
         {playlistId ? (
-          <PlaylistContainer playlistId={playlistId}></PlaylistContainer>
+          <PlaylistContainer
+            playlistId={playlistId}
+            resetCom={resetCom}
+            resetDetail={resetDetail}
+            resetPayload={resetPayload}
+          ></PlaylistContainer>
         ) : (
           ""
         )}
@@ -50,7 +66,7 @@ export const SuggestionList = ({ id, playlistId, resetCom, resetDetail }) => {
           return (
             <SuggestionVideo
               key={videoId}
-              resetPayload={() => setSuggestionList([])}
+              resetPayload={resetPayload}
               id={videoId}
               {...snippet}
               firstClass="suggestion"
@@ -59,7 +75,7 @@ export const SuggestionList = ({ id, playlistId, resetCom, resetDetail }) => {
             ></SuggestionVideo>
           );
         })}
-        {suggestionList.length < 15 && (
+        {moreAvailable && suggestionList.length < 15 && (
           <div className="showMoreV">
             <button onClick={showMore}>Show more</button>
           </div>

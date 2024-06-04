@@ -60,9 +60,11 @@ export const SuggestionVideo = ({
   }, []);
   function handleRedirection() {
     navigate(`/video/${id}`, { state: { playlistId } });
-    resetPayload();
-    resetCom();
-    resetDetail();
+    if (resetPayload) {
+      resetPayload();
+      resetCom();
+      resetDetail();
+    }
   }
   {
     return (
@@ -107,6 +109,7 @@ export const SuggestionVideo = ({
             title={title}
             uploadDate={uploadDate}
             views={views}
+            id={id}
             channelId={channelId}
             firstClass={firstClass}
           ></SearchVideoInfo>

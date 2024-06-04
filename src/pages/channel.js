@@ -3,7 +3,6 @@ import { useState } from "react";
 import customAxios from "../axios";
 import { useParams, Outlet } from "react-router-dom";
 import { Navbar } from "../components/navbar";
-import { useGlobalContext } from "../context";
 import { Sidebar } from "../components/sidebar";
 import { ChannelOverview } from "../components/channelOverview";
 import { Loading } from "../components/loading";
@@ -65,7 +64,11 @@ export const Channel = () => {
           {...statistics}
         ></ChannelOverview>
         <ChannelTab id={channelId}></ChannelTab>
-        {uploads ? <Outlet context={[uploads]}></Outlet> : <div>HELLLO</div>}
+        {uploads ? (
+          <Outlet context={[uploads]}></Outlet>
+        ) : (
+          <div className="channelMsg">No videos</div>
+        )}
       </div>
     </>
   );

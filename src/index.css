@@ -935,3 +935,28 @@ img {
   cursor: pointer;
   font-size: medium;
 }
+.community {
+  display: flex;
+  font-size: x-large;
+  justify-content: center;
+}
+.subModal {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(45deg, red, transparent);
+}
+.goToHome {
+  display: flex;
+  justify-content: center;
+}
+
+.goToHome button {
+  width: 110px;
+  background: #f88989;
+  box-shadow: 1px 3px black;
+  height: 40px;
+  font-size: large;
+  margin-top: 160px;
+  border-radius: 20px;
+  cursor: pointer;
+}

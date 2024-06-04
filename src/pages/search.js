@@ -9,10 +9,14 @@ import { Sidebar } from "../components/sidebar";
 export const SearchPage = () => {
   const { state } = useLocation();
   const keyword = state?.searchKeyword;
+  const [page, setPage] = useState(null);
   console.log(state);
   console.log(keyword);
   const infoDiv = "search";
   const [searchedVideos, setSearchedVideos] = useState([]);
+  const showMore = () => {
+    fetchData();
+  };
   async function fetchData() {
     try {
       const data = await customAxios.get("/search", {
@@ -21,16 +25,19 @@ export const SearchPage = () => {
           q: keyword,
           regionCode: "US",
           order: "relevance",
-          maxResults: "6",
           type: "video",
           videoDuration: "medium",
+          ...(page && { pageToken: page }),
         },
       });
-      console.log(data);
-      setSearchedVideos(data.data.items);
+      setPage(data?.data?.nextPageToken);
+      setSearchedVideos((prev) => {
+        return [...prev, ...data.data.items];
+      });
     } catch (error) {}
   }
   useEffect(() => {
+    setSearchedVideos([]);
     if (keyword.length) {
       fetchData();
     }
@@ -38,7 +45,7 @@ export const SearchPage = () => {
   if (searchedVideos) {
     return (
       <>
-        <Navbar></Navbar>
+        <Navbar setSearchedVideos={setSearchedVideos}></Navbar>
         <Sidebar></Sidebar>
         <div className="searchList">
           {searchedVideos.map(({ id, snippet }) => {
@@ -53,6 +60,9 @@ export const SearchPage = () => {
               ></SuggestionVideo>
             );
           })}
+          <div className="showMoreV">
+            <button onClick={showMore}>Show more</button>
+          </div>
         </div>
       </>
     );

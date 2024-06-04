@@ -8,7 +8,7 @@ export const VideoList = ({ searchFilter }) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState("");
   const { videoList, setVideoList } = useGlobalContext();
-  const getApi = async (num) => {
+  const getApi = async () => {
     try {
       const data = await customAxios.get("/search", {
         params: {
@@ -16,7 +16,6 @@ export const VideoList = ({ searchFilter }) => {
           chart: "mostPopular",
           type: "video",
           videoDuration: "medium",
-          ...(num && { maxResults: num }),
           ...(page && { pageToken: page }),
           q: searchFilter,
         },
@@ -29,7 +28,7 @@ export const VideoList = ({ searchFilter }) => {
     setLoading(false);
   };
   const showMore = () => {
-    getApi("3");
+    getApi();
   };
   useEffect(() => {
     getApi();
