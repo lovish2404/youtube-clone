@@ -24,7 +24,6 @@ body {
 }
 .sidebar-btn {
   border-style: none;
-  margin-left: 18px;
   background-color: white;
   width: 40px;
   height: 45px;
@@ -52,15 +51,9 @@ body {
 
 #image-id {
   display: flex;
-
-  margin-left: 60px;
+  margin-left: 40px;
   width: auto;
   text-decoration: none;
-}
-@media screen and (max-width: 800px) {
-  #imageText {
-    display: none !important;
-  }
 }
 
 .logo {
@@ -94,7 +87,7 @@ svg {
 }
 .searchMain {
   width: 30vw;
-  border: solid grey;
+  border: solid 2px grey;
   height: 45px;
   border-radius: 20px 0 0 20px;
   padding-left: 20px;
@@ -105,7 +98,7 @@ input:focus {
   border-color: #336699;
 }
 #imageText {
-  padding: 5px 0 0 12px;
+  padding: 5px 0 0 0;
   color: rgb(255, 61, 61);
 }
 #profile {
@@ -681,28 +674,32 @@ img {
   top: 22px;
   border: solid 1px black;
   font-size: 16px;
-  color: white;
-  height: 480px;
+  color: black;
+  height: 530px;
   z-index: 20;
   display: grid;
-  background: #336699;
+  background: white;
 }
 .crossDes {
   width: 50px;
   height: 50px;
   margin-left: 67%;
   background: none;
-  color: white;
+  color: black;
   border: none;
 }
 .channelDescriptionOpen span {
   font-size: xx-large;
   font-weight: 500;
 }
-
+.channelDesFull {
+  height: 390px;
+  font-size: 16px;
+}
 .toScroll {
   overflow-y: scroll;
-  height: 300px;
+  height: 390px;
+  margin-top: 15px;
 }
 
 .channelTab {

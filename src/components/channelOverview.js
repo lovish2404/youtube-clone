@@ -66,7 +66,7 @@ export const ChannelOverview = ({
         {showModal ? (
           <div className="fullContainerDes">
             <div className="channelDescriptionOpen" ref={ref}>
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", borderBottom: "solid 2px" }}>
                 <span>About</span>
                 <button
                   className="crossDes"

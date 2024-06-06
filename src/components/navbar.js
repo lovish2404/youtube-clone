@@ -1,5 +1,4 @@
 import React from "react";
-import { useRef, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
@@ -23,10 +22,9 @@ export const Navbar = () => {
     <>
       <div className="navbar">
         <Bars prop="sidebar-btn"></Bars>
-        <a href={url} id="image-id">
-          <img src={url} alt="video-sign" className="logo" />
-          <h2 id="imageText">IMAGE</h2>
-        </a>
+        <div id="image-id">
+          <h2 id="imageText">Y-CLONE</h2>
+        </div>
 
         <form className="navbar-search">
           <input
