@@ -55,6 +55,11 @@ body {
   width: auto;
   text-decoration: none;
 }
+@media screen and (max-width: 600px) {
+  #image-id {
+    display: none;
+  }
+}
 
 .logo {
   width: 44px;
