@@ -15,8 +15,9 @@ export const Navbar = () => {
   }
   const handleClick = (e) => {
     e.preventDefault();
-
-    navigate("/search", { state: { searchKeyword } });
+    if (searchKeyword) {
+      navigate("/search", { state: { searchKeyword } });
+    }
   };
   return (
     <>
